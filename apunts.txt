@@ -1,0 +1,157 @@
+** React Native **
+
+** TypeScript **
+# TypeScript a diferencia de JavaScript es más estricto (tipado de los valores y funciones: number, string, ...) "los errores aparecen en la escritura y no cuándo ejecutamos el código".
+# Las interfaces en TypeScript sirve para definir propiedades de un objeto (como lucen estos "reglas de validación en los objetos"). Un type es parecido pero no se puede expandir tant facilmente como una interface.
+# Si no sabemos su tipado podemos poner de tipo any.
+# Añadimos un ! para confirmar que recibirà un valor si o si.
+
+** Crear proyecto TypeScript con React **
+# npx create-react-app NomProjecte --template typescript
+
+** Diferencia entre EXPO Cli y ReactNative CLI **
+# PROS:
+# Expo CLI se encarga de controlar los builds para IOS y Android. Provee muchas funcionalidades nativas incluidas. Es excelente para alguien que empieza el desarrollo móvil. Permite correr y probar la aplicación en IOS aunque no dispongas de un Mac.
+# React Native CLI genera un proyecto con lo mínimo necesario para correr. Genera los proyectos nativos para IOS y Android de forma independiente. Te permite escribir código nativo por plataforma (en caso de ser necesario).
+# CONS:
+# Expo CLI no puedes extender una funcionalidad nativa no soportada por expo (a menos que uses el EJECT)
+# React Native CLI necesitas los ambientes de desarrollo por separado. Android Studio (las herramientas al menos) y Xcode.
+# PROS comunes:
+# La mayoría de los paquetes soportan ambos ambientes con instalaciones independientes.
+# Cambios en caliente (hot reload).
+# Desarrollar y ver cambios en desarrollo en dispositivos físicos.
+# Utilizar el conocimiento que tenemos de React en React Native.
+
+** Instalación React Native en Windows **
+# Instalamos Chocolatey
+# choco install -y nodejs.install openjdk8
+# Configurar Android Studio: https://reactnative.dev/docs/environment-setup
+
+** Crear e iniciar el proyecto React Native TypeScript**
+# npx react-native init AwesomeTSProject --template react-native-template-typescript
+# npx react-native run-android -> Dentro del proyecto para iniciar la app en el emulador de android studio o dispositivo físico.
+# Borrar todo el contenido de App.tsx.
+# En las pantallas Screen sólo deberian encargarse del despliegue de la información y colocar la lógica en custom hooks.
+
+** Detectar SO **
+# Platform.OS
+
+** Estilos react **
+# Box Object Model -> Alto, ancho, margen, padding i borde. box_object_model.jpg
+# Position -> Absoluta, relativa, top, left, right i bottom.
+# Flex Box -> Dirección, ubicación, alineamiento, estirar, encoger, proporciones. flex: 1 -> se expande todo lo posible. AlignSelf centra de una forma individual.
+# SafeAreaView -> para trabajar con móviles con notch y se vea bien la información.
+# useWindowDimensions() -> hook para obtener el width y el height de la pantalla.
+# useSafeAreaInsets() -> hook con opciones parecidas a safeArea.
+# ActivityIndicator -> Para añadir un loading.
+
+** Sistema de navegación **
+# https://reactnavigation.org/docs/getting-started
+# npm install @react-navigation/native -> para trabajar con react navigation.
+# npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view -> Opciones de react navigation
+# import 'react-native-gesture-handler'; -> En el header App.tsx
+** Stack Navigation ** 
+# Funciona como una pila. 
+# navigation.pop: destruye la pila más cerca del usuario. navigation.popToTop: A la primera página de la pila. navigation.goBack: a la pantalla anterior.
+# npm install @react-navigation/stack -> para trabajar con stack.
+# hook useNavigation() nos proporciona opciones para navegar entre pantallas.
+# StackScreenProps -> tenemos acceso a los props del screen stack actual.
+# RootStackParams -> indicamos que argumentos recibe cada página del stack navigator.
+** Drawer Navigation **
+# Menú lateral (botón hamburguesa). Se puede personalizar.
+# npm install @react-navigation/drawer -> para trabajar con drawer.
+# DrawerScreenProps -> tenemos acceso a los props del screen drawer actual.
+** BottomTab Navigation **
+# Lista de tabs debajo de la pantalla.
+# npm install @react-navigation/bottom-tabs -> para trabajar con bottom tabs.
+# npm install @react-navigation/material-bottom-tabs react-native-paper -> para trabajar con bottom tabs de material.
+** TopTap Navigation **
+npm install @react-navigation/material-top-tabs react-native-tab-view@^2.16.0 -> para trabajar con top tabs.
+
+** Instalar iconos **
+# https://github.com/oblador/react-native-vector-icons
+# npm install --save react-native-vector-icons i npm i --save-dev @types/react-native-vector-icons -> En el proyecto.
+# android/app/build.gradle -> Añadimos los iconos en el proyecto.
+
+** Reducer **
+# Una función pura.
+# Genera un nuevo estado.
+
+** Carousel **
+# https://github.com/meliorence/react-native-snap-carousel
+
+** Proyecto películas **
+# npm i axios
+# npm install --save react-native-snap-carousel -> Instalar carousel.
+# Si lleva @types significa que no va a la parte de producción.
+# npm install -D @types/react-native-snap-carousel -> Carousel con TypeScript.
+# npm install --save react-native-vector-icons -> Instalar iconos
+# npm i --save-dev @types/react-native-vector-icons -> Hacer compatible con TypeScript.
+# npm i currency-formatter  i  npm i --save-dev @types/currency-formatter -> formatear precio.
+# https://github.com/react-native-linear-gradient/react-native-linear-gradient -> Github del gradient
+# npm install react-native-linear-gradient --save -> Para instalar el gradient en el proyecto.
+# https://github.com/osamaqarem/react-native-image-colors -> Detectar color
+# npm install react-native-image-colors -> Detectar color de las imagenes.
+
+** Componentes de react-native **
+# ScrollView -> para hacer scroll vertical.
+# FlatList -> Crear una lista horizontal. Utiliza la función lazy load. Hay que proteger los objetos desmontados.
+
+** Proyecto pokedex **
+# npm install --save react-native-vector-icons -> Instalar iconos. https://github.com/oblador/react-native-vector-icons
+# npm i --save-dev @types/react-native-vector-icons
+# npm install @react-navigation/native -> Instalar el navigation.
+# npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view -> Opciones necesarias para navigation.
+# npm install @react-navigation/stack -> stack navigation
+# npm i axios -> Peticiones HTTP.
+# npm i react-native-image-colors -> color de fondo dependiendo de la imagen.
+# npm install @react-navigation/bottom-tabs -> tab navigation
+
+** Debounce **
+# Por ejemplo cuándo el cliente deja de escribir en un input se ejecutará una función.
+
+** Proyecto Mapas App **
+# npm install --save react-native-vector-icons -> Instalar iconos
+# npm i --save-dev @types/react-native-vector-icons
+# npm install @react-navigation/native -> Instalar el navigation.
+# npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view -> Opciones necesarias para navigation.
+# npm install @react-navigation/stack -> stack navigation
+# npm install --save react-native-permissions -> solicitar permisos del móvil.
+# https://www.npmjs.com/package/react-native-permissions
+# https://github.com/react-native-maps/react-native-maps
+# npm install react-native-maps --save-exact -> Para trabajar con mapas en react native.
+# https://github.com/react-native-geolocation/react-native-geolocation
+# npm install @react-native-community/geolocation --save -> Obtener la localización en coordenadas.
+
+** ContextAPI **
+# Definimos nuestro estado después tenemos que definir el estado inicial y luego tenemos la creación del context.
+# El provider es un higher order component (funcional components) que recibe unos hijos y los muestra internamente.
+
+** Estado APP **
+# AppState.addEventListener -> Permite saber en que estado se encuentra la App por ejemplo si la app está activa.
+
+** Ajustes Android/iOS **
+# openSettings() -> Permite abrir los ajustes del móvil.
+
+** Ciclo de vida React Native **
+# És importante controlar cuándo el componente se destruye y evitar perdidas de memoria y errores.
+# Si ponemos un return en un useEffect se ejecutarà el contenido de ese return cuándo se cierre la app.
+
+** KeyboardAvoidingView **
+# Permite que el teclado no oculte información en un input.
+
+** Proyecto ProductsApp **
+# https://gist.github.com/Klerith/edd976c04e12c75a3de3e85a888ba7e2 -> Descargar el backend cafe y npm i en el proyecto del backend.
+# npm install @react-navigation/native -> Instalar el navigation.
+# npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view -> Opciones necesarias para navigation.
+# npm install @react-navigation/stack -> stack navigation
+# npm i axios -> Peticiones HTTP
+# https://react-native-async-storage.github.io/async-storage/docs/install/
+# npm install @react-native-async-storage/async-storage -> Grabar el token en el dispositivo.
+# https://www.npmjs.com/package/@react-native-picker/picker
+# npm i @react-native-picker/picker -> Un selector.
+# npm i react-native-image-picker -> Seleccionar una imagen de la librería o cámara.
+
+** Ver dispositivos conectados **
+# adb devices
+
